@@ -1,0 +1,29 @@
+---
+description: Git writes are human-only. Agents must not stage, commit, push, or open pull requests.
+alwaysApply: true
+---
+
+# Git is human-only
+
+Do not stage, commit, push, or open pull requests. Humans do that, including when a chat asks an agent to do it.
+
+Leave changes in the working tree. You may tell the person the exact commands to run.
+
+Do not run:
+
+- `git add`
+- `git commit` (including `--amend`)
+- `git push` (including force-push)
+- `git rebase`
+- `gh pr create`
+
+```bash
+# Bad: the agent commits and opens a PR
+git add .
+git commit -m "Add contracts"
+git push -u origin HEAD
+gh pr create
+
+# Good: the agent stops and hands the commands to a person
+# Changes are unstaged. A human reviews them, then commits and pushes.
+```
