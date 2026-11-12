@@ -3,6 +3,7 @@ node_modules
 
 # Hardhat files
 /cache
+/artifacts
 
 # TypeChain files
 /typechain
@@ -15,8 +16,4 @@ node_modules
 # ABI Directory
 abi/
 
-.claude
-
 .venv/
-
-CLAUDE.md

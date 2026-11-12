@@ -19,6 +19,7 @@ import { IEntropyV2 } from "@pythnetwork/entropy-sdk-solidity/IEntropyV2.sol";
 
 import { AllowedManager } from "./lib/AllowedManager.sol";
 import { FisherYatesRejection } from "./lib/FisherYatesWithRejection.sol";
+import { JackpotErrors } from "./lib/JackpotErrors.sol";
 import { IScaledEntropyProvider } from "./interfaces/IScaledEntropyProvider.sol";
 
 /**
@@ -56,7 +57,6 @@ contract ScaledEntropyProvider is Ownable2Step, AllowedManager, IScaledEntropyPr
     // =============================================================
     error InvalidCallback();
     error CallbackFailed(bytes4 selector);
-    error ZeroAddress();
     error InvalidSelector();
     error InvalidRequests();
     error InvalidRange();
@@ -95,8 +95,8 @@ contract ScaledEntropyProvider is Ownable2Step, AllowedManager, IScaledEntropyPr
      * - Owner-based access control for administrative functions
      */
     constructor(address _entropy, address _entropyProvider) AllowedManager() {
-        if (_entropy == address(0)) revert ZeroAddress();
-        if (_entropyProvider == address(0)) revert ZeroAddress();
+        if (_entropy == address(0)) revert JackpotErrors.ZeroAddress();
+        if (_entropyProvider == address(0)) revert JackpotErrors.ZeroAddress();
         entropy = IEntropyV2(_entropy);
         entropyProvider = _entropyProvider;
     }
@@ -214,7 +214,7 @@ contract ScaledEntropyProvider is Ownable2Step, AllowedManager, IScaledEntropyPr
      * - Zero address validation
      */
     function setEntropyProvider(address _entropyProvider) external onlyOwner {
-        if (_entropyProvider == address(0)) revert ZeroAddress();
+        if (_entropyProvider == address(0)) revert JackpotErrors.ZeroAddress();
         entropyProvider = _entropyProvider;
     }
 

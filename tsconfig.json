@@ -12,10 +12,9 @@
     "declarationDir": "./dist/types",
     "declarationMap": true,
     "sourceMap": true,
-    "baseUrl": ".",
     "paths": {
-      "@utils/*": ["utils/*"],
-      "@typechain/*": ["typechain-types/*"]
+      "@utils/*": ["./utils/*"],
+      "@typechain/*": ["./typechain-types/*"]
     }
   },
   "include": [

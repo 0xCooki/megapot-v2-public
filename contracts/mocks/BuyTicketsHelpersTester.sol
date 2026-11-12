@@ -5,13 +5,6 @@ import { BuyTicketsHelpers } from "../lib/BuyTicketsHelpers.sol";
 import { IJackpot } from "../interfaces/IJackpot.sol";
 
 contract BuyTicketsHelpersTester {
-    // Re-declare library event for ABI exposure in tests
-    event StaticTicketValidated(
-        address indexed recipient,
-        uint8[] normals,
-        uint8 bonusball
-    );
-
     function validateReferrers(
         IJackpot jackpot,
         address[] calldata referrers,
