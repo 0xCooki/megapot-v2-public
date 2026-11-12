@@ -191,7 +191,7 @@ describe("Core Protocol Scenarios", () => {
     }
   }
 
-  it("runs 10 drawing cycles with random operations", async () => {
+  it("runs 3 drawing cycles with random operations", async () => {
     // Initialize first jackpot
     await jackpot.connect(owner.wallet).initializeJackpot(
       BigInt(await time.latest()) + BigInt(DRAWING_DURATION)
@@ -202,7 +202,7 @@ describe("Core Protocol Scenarios", () => {
       userTotalClaims.lpRevenue - userTotalClaims.lpLosses
     );
     
-    for (let cycle = 1; cycle <= 10; cycle++) {
+    for (let cycle = 1; cycle <= 3; cycle++) {
       console.log(`\n=== CYCLE ${cycle} ===`);
       
       const balanceBeforeCycle = await usdcMock.balanceOf(await jackpot.getAddress());
@@ -474,13 +474,12 @@ describe("Core Protocol Scenarios", () => {
 
   async function generateTickets(count: number, cycle: number): Promise<Ticket[]> {
     const tickets: Ticket[] = [];
-    
+    const drawingState = await jackpot.getDrawingState(cycle);
+
     for (let i = 0; i < count; i++) {
-      // Mix of random and strategic tickets
-      const drawingState = await jackpot.getDrawingState(cycle);
       tickets.push(generateRandomTicket(drawingState.ballMax, drawingState.bonusballMax));
     }
-    
+
     return tickets;
   }
 

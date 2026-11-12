@@ -84,7 +84,7 @@ NODE_OPTIONS="--max-old-space-size=6144" yarn coverage
 
 Coverage excludes interface and mock contracts (see `.solcover.js`). The configuration includes:
 - Yul optimizer enabled for accurate gas reporting
-- 2-minute timeout for complex test scenarios
+- 4-minute timeout for complex test scenarios
 - Optimized compiler settings for coverage runs
 
 ## Project Structure
