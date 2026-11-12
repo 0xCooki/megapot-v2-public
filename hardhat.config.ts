@@ -30,7 +30,7 @@ const config: HardhatUserConfig = {
     target: "ethers-v6",
   },
   mocha: {
-    timeout: 120000, // 2 minutes timeout for coverage runs
+    timeout: 240000, // 4 minutes timeout for coverage runs
   },
   networks: {
     hardhat: {

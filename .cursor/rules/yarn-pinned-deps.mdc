@@ -1,0 +1,29 @@
+---
+description: Dependencies are added with Yarn and pinned to an exact version.
+alwaysApply: true
+---
+
+# Pinned Yarn dependencies
+
+Add dependencies with `yarn add` from the repo root.
+
+Do not use `forge install`, `npm install`, or `pnpm add` to add a dependency.
+
+Every direct dependency in `package.json` is an exact version. No `^`, `~`, `*`, or `>=`. Do not loosen an existing exact pin back into a range.
+
+```bash
+# Bad
+forge install OpenZeppelin/openzeppelin-contracts
+yarn add ethers
+
+# Good
+yarn add ethers@6.15.0 --exact
+```
+
+```json
+// Bad
+"ethers": "^6.15.0"
+
+// Good
+"ethers": "6.15.0"
+```
